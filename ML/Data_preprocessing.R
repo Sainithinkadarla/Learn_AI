@@ -52,3 +52,19 @@ df$symboling[df$symboling==lp]
 summary(df)
 
 ## Missing Value Imputation
+nfl1 <- read.csv("E:/sai/UCE/Learn_AI/Datasets/NFL1.csv", header = TRUE)
+nfl1 <- nfl1[1:100]
+nfl1
+
+summary (nfl1)
+summary(nfl1$down)
+nfl1$down
+mean(nfl1$down)
+mean(nfl1$down, na.rm = TRUE)
+which(is.na(nfl1$down)) # To get nan value places
+
+nfl1$down[is.na(nfl1$down)] <- mean(nfl1$down, na.rm=TRUE)
+nfl1$down
+summary(nfl1$down)
+
+## Variable tranformation
