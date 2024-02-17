@@ -68,3 +68,25 @@ nfl1$down
 summary(nfl1$down)
 
 ## Variable tranformation
+data <- read.csv("E:/sai/UCE/Learn_AI/Machine Learning & Deep Learning in Python & R/Data Files/1. ST Academy - Crash course and Regression files/House_Price.csv",header=TRUE)
+summary(data)
+
+pairs(~price+crime_rate,data=data)
+plot(data$crime,data$price)
+
+data$crime_rate = log(1+data$crime_rate)
+
+plot(data$crime,data$price)
+
+data$total_dist = (data$dist1+data$dist2+data$dist3+data$dist4)/4
+
+
+temp <- data[,-7:-10]
+data <- temp 
+rm(temp)
+
+data <- data[,-14]
+
+temp <- data[1:100,0:4]
+
+? read.csv
