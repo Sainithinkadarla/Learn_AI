@@ -1,14 +1,14 @@
-# Data Preprocessing
+# df Preprocessing
 
-## Importing Dataset
-df <- read.csv("E:/sai/UCE/Learn_AI/Datasets/employee.csv", header = TRUE)
+## Importing dfset
+df <- read.csv("E:/sai/UCE/Learn_AI/dfsets/employee.csv", header = TRUE)
 str(df)
 
-## Univariate analysis and EDD(Extended Data Dictionary)
+## Univariate analysis and EDD(Extended df Dictionary)
 summary(df)
 hist(df$performance_score)
 
-pairs(~performance_score+income+age, data=df)
+pairs(~performance_score+income+age, df=df)
 
 
 barplot(table(df$gender))
@@ -16,12 +16,12 @@ barplot(table(df$gender))
 
 
 
-df <- read.csv("E:/sai/UCE/Learn_AI/Datasets/data.csv", header = TRUE)
+df <- read.csv("E:/sai/UCE/Learn_AI/dfsets/df.csv", header = TRUE)
 str(df)
 summary(df)
 
 hist(df$compression.ratio)
-pairs(~curb.weight+engine.size+compression.ratio, data=df)
+pairs(~curb.weight+engine.size+compression.ratio, df=df)
 
 barplot(table(df$engine.location), col=c("red","blue"))
 
@@ -52,7 +52,7 @@ df$symboling[df$symboling==lp]
 summary(df)
 
 ## Missing Value Imputation
-nfl1 <- read.csv("E:/sai/UCE/Learn_AI/Datasets/NFL1.csv", header = TRUE)
+nfl1 <- read.csv("E:/sai/UCE/Learn_AI/dfsets/NFL1.csv", header = TRUE)
 nfl1 <- nfl1[1:100]
 nfl1
 
@@ -68,25 +68,35 @@ nfl1$down
 summary(nfl1$down)
 
 ## Variable tranformation
-data <- read.csv("E:/sai/UCE/Learn_AI/Machine Learning & Deep Learning in Python & R/Data Files/1. ST Academy - Crash course and Regression files/House_Price.csv",header=TRUE)
-summary(data)
+df <- read.csv("E:/sai/UCE/Learn_AI/Machine Learning & Deep Learning in Python & R/Data Files/1. ST Academy - Crash course and Regression files/House_Price.csv",header=TRUE)
+summary(df)
 
-pairs(~price+crime_rate,data=data)
-plot(data$crime,data$price)
+pairs(~price+crime_rate,df=df)
+plot(df$crime,df$price)
+plot(df$price,df$crime)
 
-data$crime_rate = log(1+data$crime_rate)
+df$crime_rate = log(1+df$crime_rate)
 
-plot(data$crime,data$price)
+plot(df$crime,df$price)
 
-data$total_dist = (data$dist1+data$dist2+data$dist3+data$dist4)/4
+df$total_dist = (df$dist1+df$dist2+df$dist3+df$dist4)/4
 
 
-temp <- data[,-7:-10]
-data <- temp 
+temp <- df[,-7:-10]
+df <- temp 
 rm(temp)
 
-data <- data[,-14]
+df <- df[,-14]
 
-temp <- data[1:100,0:4]
+temp <- df[1:100,0:4]
 
 ? read.csv
+
+## Dummy variable
+View(df)
+
+require("dummies")
+
+df <- dummy.data.frame(df)
+
+# cannot create dummy variables
