@@ -1,14 +1,14 @@
 # df Preprocessing
 
 ## Importing dfset
-df <- read.csv("E:/sai/UCE/Learn_AI/dfsets/employee.csv", header = TRUE)
+df <- read.csv("E:/sai/UCE/Learn_AI/datasets/employee.csv", header = TRUE)
 str(df)
 
 ## Univariate analysis and EDD(Extended df Dictionary)
 summary(df)
 hist(df$performance_score)
 
-pairs(~performance_score+income+age, df=df)
+pairs(~performance_score+income+age, data=df)
 
 
 barplot(table(df$gender))
@@ -16,12 +16,12 @@ barplot(table(df$gender))
 
 
 
-df <- read.csv("E:/sai/UCE/Learn_AI/dfsets/df.csv", header = TRUE)
+df <- read.csv("E:/sai/UCE/Learn_AI/datasets/data.csv", header = TRUE)
 str(df)
 summary(df)
 
 hist(df$compression.ratio)
-pairs(~curb.weight+engine.size+compression.ratio, df=df)
+pairs(~curb.weight+engine.size+compression.ratio, data=df)
 
 barplot(table(df$engine.location), col=c("red","blue"))
 
@@ -52,8 +52,9 @@ df$symboling[df$symboling==lp]
 summary(df)
 
 ## Missing Value Imputation
-nfl1 <- read.csv("E:/sai/UCE/Learn_AI/dfsets/NFL1.csv", header = TRUE)
-nfl1 <- nfl1[1:100]
+df <- read.csv("E:/sai/UCE/Learn_AI/Machine Learning & Deep Learning in Python & R/Data Files/1. ST Academy - Crash course and Regression files/House_Price.csv",header=TRUE)
+nfl1 <- read.csv("E:/sai/UCE/Learn_AI/datasets/NFL1.csv", header = TRUE)
+nfl1 <- nfl1[1:100,]
 nfl1
 
 summary (nfl1)
@@ -64,14 +65,14 @@ mean(nfl1$down, na.rm = TRUE)
 which(is.na(nfl1$down)) # To get nan value places
 
 nfl1$down[is.na(nfl1$down)] <- mean(nfl1$down, na.rm=TRUE)
+df$n_hos_beds[is.na(df$n_hos_beds)] <- mean(df$n_hos_beds,na.rm = TRUE)
 nfl1$down
 summary(nfl1$down)
 
 ## Variable tranformation
-df <- read.csv("E:/sai/UCE/Learn_AI/Machine Learning & Deep Learning in Python & R/Data Files/1. ST Academy - Crash course and Regression files/House_Price.csv",header=TRUE)
 summary(df)
 
-pairs(~price+crime_rate,df=df)
+pairs(~price+crime_rate,data=df)
 plot(df$crime,df$price)
 plot(df$price,df$crime)
 
@@ -90,13 +91,24 @@ df <- df[,-14]
 
 temp <- df[1:100,0:4]
 
-? read.csv
-
 ## Dummy variable
 View(df)
 
-require("dummies")
+install.packages('fastDummies')
+require("fastDummies")
 
-df <- dummy.data.frame(df)
+df <- dummy_cols(df)
 
-# cannot create dummy variables
+df <- df[,-20]
+df <- df[,-16]
+df <- df[,-12]
+df <- df[,-9]
+
+
+## Correlation analysis
+
+cor(df)
+
+round(cor(df),2)
+
+df <- df[,-12]
