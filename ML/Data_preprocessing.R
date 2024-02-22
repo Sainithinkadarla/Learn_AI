@@ -112,3 +112,14 @@ cor(df)
 round(cor(df),2)
 
 df <- df[,-12]
+
+
+## Linear Regression
+model <- lm(price~room_num, data = df)
+summary(model)
+plot(df$room_num,df$price)
+
+abline(model)
+
+## Multiple Linear Regression
+
