@@ -122,4 +122,4 @@ plot(df$room_num,df$price)
 abline(model)
 
 ## Multiple Linear Regression
-
+mutli_model<-lm(price~., data= df)
